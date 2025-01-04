@@ -1,0 +1,21 @@
+name: solana-rpc
+
+services:
+  rust:
+    # image: rust:1.83-bullseye
+    build:
+      context: .
+    sysctls:
+      net.core.rmem_max: 134217728
+      net.core.wmem_max: 134217728
+      net.core.rmem_default: 134217728
+      net.core.wmem_default: 134217728
+      net.core.netdev_max_backlog: 300000
+    container_name: rust
+    stdin_open: true
+    tty: true
+    ports:
+      - "8899:8899"
+      - "8900:8900" 
+    volumes:
+      - ./solana:/solana/

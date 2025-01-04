@@ -1,0 +1,23 @@
+FROM rust:1.83-bullseye
+
+# 安裝必要套件
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y build-essential clang cmake curl git libssl-dev pkg-config libudev-dev protobuf-compiler \
+    && rm -rf /var/lib/apt/lists/*
+
+# 設定 Solana 路徑
+# ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
+
+# 安裝 Solana CLI (使用特定版本，例如 v1.17.17)
+# RUN sh -c "$(curl -sSfL https://release.solana.com/v1.17.17/install)" && \
+#     ls -la /root/.local/share/solana/install/active_release/bin/ && \
+#     /root/.local/share/solana/install/active_release/bin/solana --version
+
+# 設定工作目錄
+WORKDIR /solana
+
+# 添加啟動腳本
+COPY start.sh /solana/
+RUN chmod +x /solana/start.sh
+
+# CMD ["/solana/start.sh"]
