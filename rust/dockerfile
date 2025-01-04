@@ -14,10 +14,10 @@ RUN apt-get update && apt-get upgrade -y && \
 #     /root/.local/share/solana/install/active_release/bin/solana --version
 
 # 設定工作目錄
-WORKDIR /solana
+# WORKDIR /app
 
 # 添加啟動腳本
-COPY start.sh /solana/
-RUN chmod +x /solana/start.sh
+# COPY start.sh ./
+# RUN chmod +x ./start.sh
 
 # CMD ["/solana/start.sh"]
